@@ -44,7 +44,9 @@ public class DownService {
             }
 
             @Override
-            public void process(String downloadUrl, int finished, int sum, float percent) {
+            public void process(String downloadUrl, int finished, int sum, float percent) throws InterruptedException {
+
+                Thread.sleep(500);
                 System.out.println("下载网址：" + downloadUrl + "\t已下载" + finished + "个\t一共" + sum + "个\t已完成" + percent + "%");
             }
 

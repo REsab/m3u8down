@@ -4,7 +4,7 @@ public interface DownloadListener {
 
     void start();
 
-    void process(String downloadUrl, int finished, int sum, float percent);
+    void process(String downloadUrl, int finished, int sum, float percent) throws InterruptedException;
 
     void speed(String speedPerSecond);
 

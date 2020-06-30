@@ -58,9 +58,43 @@ export default {
     }
   }
 };
+
+
+
 </script>
 
+<script>
 
+        const socket = new WebSocket("ws://127.0.0.1:8078/websocket");
+        socket.onopen = (ws) => {
+            console.log(new Date().getTime() + " start ws... ")
+
+        }
+        socket.onmessage = (ws) => {
+            console.log(new Date().getTime() + "ws: " + ws.data)
+
+        }
+        socket.onclose = (ws) => {
+            console.log(new Date().getTime() + " close ws... ")
+
+        }
+        socket.onerror = (ws) => {
+            console.log(new Date().getTime() + " ws error ")
+
+        }
+
+
+        setTimeout(() => {
+            socket.send("send msg")
+        }, 2000)
+
+
+        setTimeout(() => {
+            socket.close()
+        }, 2000)
+
+
+    </script>
 
 <style>
 #app {
