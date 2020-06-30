@@ -1,5 +1,7 @@
 package com.example.demo.socket;
 
+import com.example.demo.observer.MsgBean;
+import com.example.demo.observer.MsgObserver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -57,7 +59,26 @@ public class MyWebsocketServer {
     @OnMessage
     public void onMessage(String message) {
         log.info("服务端收到客户端发来的消息: {}", message);
-        this.sendAll(message);
+
+
+        for (int i = 0; i < 33; i++) {
+
+
+            MsgBean msgBean = new MsgBean();
+            new MsgObserver(msgBean);
+
+
+            msgBean.setMessage("sldfkdf     " + System.currentTimeMillis());
+            this.sendAll(message + msgBean.getMessage());
+
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     /**
